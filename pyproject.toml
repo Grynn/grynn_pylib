@@ -1,0 +1,18 @@
+[build-system]
+requires = ["poetry>=1.1.0"]
+build-backend = "poetry.masonry.api"
+
+[tool.poetry]
+name = "grynn_pylib"
+version = "0.1.0"
+description = "A Python library of general utility functions, by & for Grynn."
+authors = ["Vishal Doshi <vishal.doshi@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pandas = "^2.2.3"
+loguru = "^0.7.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2"
+
