@@ -14,10 +14,10 @@ pip install -e <path_to_grynn_pylib>
 ## Usage
 
 ```python
-from grynn_pylib import compare
+from grynn_pylib import utils
 
 pd.DataFrame({'a': [1, 2], 'b': [3, 4]})
-compare.compare(pd.a, pd.b)
+utils.bcompare(pd.a, pd.b)
 ```
 
 ## License

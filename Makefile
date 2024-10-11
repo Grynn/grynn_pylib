@@ -23,3 +23,6 @@ clean:
 
 test:
 	poetry run pytest
+
+version:
+	poetry version patch
