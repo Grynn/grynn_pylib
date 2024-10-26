@@ -24,5 +24,3 @@ def rolling_cagr(data: pd.DataFrame, window = 252*3) -> pd.Series:
     if (data.index[-1] - data.index[0]).days < 365:
         warnings.warn('Index is less than 1 year long. CAGR may be inaccurate.', UserWarning)     
     return cagr_series
-
-    

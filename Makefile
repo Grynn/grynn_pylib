@@ -1,28 +1,18 @@
 # Makefile
 
-.PHONY: all clean install test
+.PHONY: all clean install test deps
 
-all: install requirements.txt
+install:
+	pip install -e .
 
-install: poetry.lock requirements.txt
-	poetry install
-
-requirements.txt: poetry.lock
-	poetry export -f requirements.txt --without-hashes --output requirements.txt
-
-poetry.lock: pyproject.toml
-	poetry lock
-	
 clean:
 	rm -rf .pytest_cache
 	rm -rf dist
 	rm -rf build
 	rm -rf *.egg-info
 	rm -rf .venv
-	rm requirements.txt
+	rm -rf requirements.txt
+	rm -rf .pytest_cache
 
-test:
-	poetry run pytest
-
-version:
-	poetry version patch
+test: install
+	pytest

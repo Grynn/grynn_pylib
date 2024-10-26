@@ -1,6 +1,5 @@
 import unittest
 from grynn_pylib.finance import options
-import numpy as np
 
 class TestOptions(unittest.TestCase):
 
@@ -119,7 +118,7 @@ class TestOptions(unittest.TestCase):
         # Assert the result
         self.assertAlmostEqual(omega_short_put, expected_omega_short_put, places=3)
 
-    def test_payoff_put(self):
+    def test_short_payoff_put_percent(self):
         # Sample inputs
         S = 90
         K = 100
@@ -129,14 +128,14 @@ class TestOptions(unittest.TestCase):
         expected_payoff = -0.0526
 
         # Call the function
-        payoff = options.payoff_put(S, K, premium)
+        payoff = options.payoff_short_put_percent(S, K, premium)
 
         # Assert the result
         self.assertAlmostEqual(payoff, expected_payoff, places=4)
 
         S=110
         expected_payoff=0.0526
-        payoff=options.payoff_put(S,K,premium)
+        payoff=options.payoff_short_put_percent(S,K,premium)
         self.assertAlmostEqual(payoff,expected_payoff,places=4)
 
 if __name__ == "__main__":

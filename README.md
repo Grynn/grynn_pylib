@@ -23,3 +23,9 @@ utils.bcompare(pd.a, pd.b)
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](https://github.com/grynn/util/blob/main/LICENSE) file for more information.
+
+## Notes
+
+* This project is a work in progress.
+* py_vollib could be an alternative to the Black-Scholes formula implementation in this library.
+* [optlib](https://github.com/dbrojas/optlib/tree/master) looks interesting (uses a very old numpy though, did not install on 3.12.6 out of the box)

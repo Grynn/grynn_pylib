@@ -1,3 +1,4 @@
+# An interactive plot of the payoff of a short put position, including the position delta
 #%%
 import grynn_pylib.finance.options as options
 import matplotlib.pyplot as plt
@@ -14,8 +15,8 @@ line1, = ax.plot([], [], label='Payoff Short Put')
 line2, = ax.plot([], [], label='Position Delta')
 
 def update_plot(hist_vol, dte):
-	spot_ladder = np.linspace(50, 150, 100)
 	strike = 100
+	spot_ladder = np.linspace(0.5*strike, 1.5*strike, 100)	
 	payoff_short_put = options.payoff_short_put(spot_ladder, strike, 0)
 	position_delta = -options.bs_delta(np.asarray(spot_ladder), strike, dte/365, 0.05, 0.2, option_type='put')
 	line1.set_ydata(payoff_short_put)
