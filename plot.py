@@ -18,23 +18,23 @@ spot = np.linspace(strike*0.5, strike*1.5, 100)
 premium = 5
 dte = 30
 
-plt.figure()
-plt.plot(spot, options.intrinsic_value(spot, strike, 'call') - premium, label='long call')
-plt.plot(spot, -options.intrinsic_value(spot, strike, 'call') + premium, label='short call')
-plt.plot(spot, options.intrinsic_value(spot, strike, 'put') - premium, label='long put')
-plt.plot(spot, -options.intrinsic_value(spot, strike, 'put') + premium, label='short put')
-plt.xlabel('Spot Price')
-plt.ylabel('Payoff')
-plt.axhline(0, color='black', linewidth=0.5)
-plt.legend()
-lines = plt.gca().get_lines()
-for i, txt in enumerate(['long call', 'short call', 'long put', 'short put']):
-    plt.annotate(txt, (spot[-1], [options.intrinsic_value(spot, strike, 'call')[-1] - premium,
-                                  -options.intrinsic_value(spot, strike, 'call')[-1] + premium,
-                                  options.intrinsic_value(spot, strike, 'put')[-1] - premium,
-                                  -options.intrinsic_value(spot, strike, 'put')[-1] + premium][i]),
-                 textcoords="offset points", xytext=(0,10), ha='center', color=lines[i].get_color())
-plt.show()
+# plt.figure()
+# plt.plot(spot, options.intrinsic_value(spot, strike, 'call') - premium, label='long call')
+# plt.plot(spot, -options.intrinsic_value(spot, strike, 'call') + premium, label='short call')
+# plt.plot(spot, options.intrinsic_value(spot, strike, 'put') - premium, label='long put')
+# plt.plot(spot, -options.intrinsic_value(spot, strike, 'put') + premium, label='short put')
+# plt.xlabel('Spot Price')
+# plt.ylabel('Payoff')
+# plt.axhline(0, color='black', linewidth=0.5)
+# plt.legend()
+# lines = plt.gca().get_lines()
+# for i, txt in enumerate(['long call', 'short call', 'long put', 'short put']):
+#     plt.annotate(txt, (spot[-1], [options.intrinsic_value(spot, strike, 'call')[-1] - premium,
+#                                   -options.intrinsic_value(spot, strike, 'call')[-1] + premium,
+#                                   options.intrinsic_value(spot, strike, 'put')[-1] - premium,
+#                                   -options.intrinsic_value(spot, strike, 'put')[-1] + premium][i]),
+#                  textcoords="offset points", xytext=(0,10), ha='center', color=lines[i].get_color())
+# plt.show()
 
 fig, axs = plt.subplots(2, 2, figsize=(10, 8))
 
@@ -64,6 +64,16 @@ for ax in axs.flat:
 plt.tight_layout()
 plt.show()
 
+# Plot the Synthetics
+# Original    =	Synthetic
+# ----------------------------------------
+# Long Stock	=	Long Call	+	Short Put
+# Short Stock	=	Short Call	+	Long Put
+# Long Call	    =	Long Stock	+	Long Put
+# Short Call	=	Short Stock	+	Short Put
+# Long Put	    =	Short Stock	+	Long Call
+# Short Put	    =	Long Stock	+	Short Call
+
 # Plot a long call and (forward + put) position
 fig = plt.figure()
 plt.plot(spot, options.intrinsic_value(spot, strike, 'call') - premium, label='long call')
@@ -72,6 +82,23 @@ plt.xlabel('Spot Price')
 plt.ylabel('Payoff')
 plt.axhline(0, color='black', linewidth=0.5)
 plt.legend()
+plt.title("Sythetic: Long Call = Forward + Put")
 plt.show()
+
+# Plot a synthethic long stock position
+fig = plt.figure()
+plt.plot(spot, 
+         options.intrinsic_value(spot, strike, 'call') - options.intrinsic_value(spot, strike, 'put'), 
+         label='call - put')
+plt.xlabel('Spot Price')
+plt.ylabel('Payoff')
+plt.axhline(0, color='black', linewidth=0.5)
+plt.legend()
+plt.title("Sythetic: Long Stock = Long Call + Short Put")
+plt.show()
+
+
+
+
 
 

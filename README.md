@@ -1,5 +1,7 @@
 # grynn_pylib
 
+![Tests](https://github.com/Grynn/grynn_pylib/actions/workflows/pytest.yml/badge.svg)
+
 This is a Python library project that provides finance-related functions and general utility functions.
 
 ## Installation
