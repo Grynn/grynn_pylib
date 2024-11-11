@@ -1,6 +1,6 @@
 # Makefile
 
-.PHONY: all clean install test deps
+.PHONY: all clean install test version
 
 install:
 	pip install -e .
@@ -16,3 +16,7 @@ clean:
 
 test: install
 	pytest
+
+version: test
+	@VERSION=$(or $(VERSION), patch)
+	@NEW_VERSION=$(shell python bump_version.py $$VERSION)

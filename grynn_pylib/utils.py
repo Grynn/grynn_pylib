@@ -3,19 +3,25 @@ import tempfile
 from loguru import logger
 import pandas as pd
 
-def bcompare_indices(a: pd.Index, b: pd.Index):
-    """
-    Diff two indices (a and b) using Beyond Compare (wait for user to close the window)
-    """
-    bcompare_frames(a.to_series(), b.to_series())
 
+def bcompare_frames(a: pd.DataFrame, b: pd.DataFrame):
+    """
+    Diff two dataframes (a and b) using Beyond Compare (wait for user to close the window)
+    """
+    aname = "a"
+    bname = "b"
 
-def bcompare_frames(a: pd.Series|pd.DataFrame, b: pd.Series|pd.DataFrame):
-    """
-    Diff two series (a and b) using Beyond Compare (wait for user to close the window)
-    """
-    aname = a.name if a.name is not None else "a"
-    bname = b.name if b.name is not None else "b"
+    if (a.index.name is not None) and (a.index.name != ""):
+        aname = a.index.name
+
+    if (b.index.name is not None) and (b.index.name != ""):
+        bname = b.index.name
+    
+    if (a.columns.name is not None) and (a.columns.name != ""):
+        aname = a.columns.name
+
+    if (b.columns.name is not None) and (b.columns.name != ""):
+        bname = b.columns.name    
 
     with tempfile.NamedTemporaryFile(suffix=".csv", prefix=aname, delete=True) as temp1:
         with tempfile.NamedTemporaryFile(suffix=".csv", prefix=bname, delete=True) as temp2:
@@ -32,4 +38,7 @@ def bcompare(a: pd.Series|pd.DataFrame|pd.Index, b: pd.Series|pd.DataFrame|pd.In
     """
     if isinstance(a, pd.Index): a = a.to_series()        
     if isinstance(b, pd.Index): b = b.to_series()
+    # convert series to dataframes with frame.index.name | frame.columns.name = series.name
+    if isinstance(a, pd.Series): a = pd.DataFrame(a)
+    if isinstance(b, pd.Series): b = pd.DataFrame(b)
     bcompare_frames(a, b)
