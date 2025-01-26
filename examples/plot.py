@@ -2,7 +2,7 @@
 #%%
 # plot the basic options (put & call, long & short) payoffs
 # the main goal is to ensure these are correctly calculated and consistent
-# is a short put just a -1 * long put? => yes
+# A short put just -1 * long put
 # next: 
     #TODO: Make the plot interactive
     #Allow fiddling with dte, 

@@ -1,7 +1,6 @@
 import unittest
 from unittest.mock import patch
 import pandas as pd
-import os
 
 from grynn_pylib import utils
 
