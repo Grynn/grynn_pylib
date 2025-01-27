@@ -5,9 +5,7 @@ import click
 
 
 @click.command()
-@click.argument(
-    "version", type=click.Choice(["major", "minor", "patch"]), default="patch"
-)
+@click.argument("version", type=click.Choice(["major", "minor", "patch"]), default="patch")
 def bump_version(version):
     with open("pyproject.toml", "r") as f:
         data = toml.load(f)
@@ -33,9 +31,7 @@ def bump_version(version):
 
     subprocess.run(["git", "add", "pyproject.toml"])
     subprocess.run(["git", "commit", "-m", f"Bump version to {new_version}"])
-    subprocess.run(
-        ["git", "tag", "-a", f"v{new_version}", "-m", f"Bump version to {new_version}"]
-    )
+    subprocess.run(["git", "tag", "-a", f"v{new_version}", "-m", f"Bump version to {new_version}"])
 
     print(new_version)
 

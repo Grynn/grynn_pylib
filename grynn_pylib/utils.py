@@ -24,9 +24,7 @@ def bcompare_frames(a: pd.DataFrame, b: pd.DataFrame):
         bname = b.columns.name
 
     with tempfile.NamedTemporaryFile(suffix=".csv", prefix=aname, delete=True) as temp1:
-        with tempfile.NamedTemporaryFile(
-            suffix=".csv", prefix=bname, delete=True
-        ) as temp2:
+        with tempfile.NamedTemporaryFile(suffix=".csv", prefix=bname, delete=True) as temp2:
             a.to_csv(temp1.name)
             b.to_csv(temp2.name)
             logger.debug(f"Temp files: {aname}: {temp1.name},\n{bname}: {temp2.name}")
@@ -35,9 +33,7 @@ def bcompare_frames(a: pd.DataFrame, b: pd.DataFrame):
             # bcomp in turn waits for the user to close the comparison window
 
 
-def bcompare(
-    a: pd.Series | pd.DataFrame | pd.Index, b: pd.Series | pd.DataFrame | pd.Index
-):
+def bcompare(a: pd.Series | pd.DataFrame | pd.Index, b: pd.Series | pd.DataFrame | pd.Index):
     """
     Diff two series or dataframes using Beyond Compare (wait for user to close the window)
     """

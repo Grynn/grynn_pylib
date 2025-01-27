@@ -21,27 +21,19 @@ dte = 30
 fig, axs = plt.subplots(2, 2, figsize=(10, 8))
 
 # Long Call
-axs[0, 0].plot(
-    spot, options.intrinsic_value(spot, strike, "call") - premium, label="long call"
-)
+axs[0, 0].plot(spot, options.intrinsic_value(spot, strike, "call") - premium, label="long call")
 axs[0, 0].set_title("Long Call")
 
 # Short Call
-axs[0, 1].plot(
-    spot, -options.intrinsic_value(spot, strike, "call") + premium, label="short call"
-)
+axs[0, 1].plot(spot, -options.intrinsic_value(spot, strike, "call") + premium, label="short call")
 axs[0, 1].set_title("Short Call")
 
 # Long Put
-axs[1, 0].plot(
-    spot, options.intrinsic_value(spot, strike, "put") - premium, label="long put"
-)
+axs[1, 0].plot(spot, options.intrinsic_value(spot, strike, "put") - premium, label="long put")
 axs[1, 0].set_title("Long Put")
 
 # Short Put
-axs[1, 1].plot(
-    spot, -options.intrinsic_value(spot, strike, "put") + premium, label="short put"
-)
+axs[1, 1].plot(spot, -options.intrinsic_value(spot, strike, "put") + premium, label="short put")
 axs[1, 1].set_title("Short Put")
 
 for ax in axs.flat:
@@ -66,9 +58,7 @@ plt.show()
 
 # Plot a long call and a synthetic long call (forward + put) position
 fig = plt.figure()
-plt.plot(
-    spot, options.intrinsic_value(spot, strike, "call") - premium, label="long call"
-)
+plt.plot(spot, options.intrinsic_value(spot, strike, "call") - premium, label="long call")
 plt.plot(
     spot,
     spot - strike + options.intrinsic_value(spot, strike, "put"),
@@ -85,8 +75,7 @@ plt.show()
 fig = plt.figure()
 plt.plot(
     spot,
-    options.intrinsic_value(spot, strike, "call")
-    - options.intrinsic_value(spot, strike, "put"),
+    options.intrinsic_value(spot, strike, "call") - options.intrinsic_value(spot, strike, "put"),
     label="call - put",
 )
 plt.xlabel("Spot Price")

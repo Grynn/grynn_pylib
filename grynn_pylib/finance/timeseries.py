@@ -6,9 +6,7 @@ from warnings import warn
 from loguru import logger as log
 
 
-def rolling_return(
-    s: pd.Series, years: int = 5, snap_to_closest: bool = False
-) -> pd.Series:
+def rolling_return(s: pd.Series, years: int = 5, snap_to_closest: bool = False) -> pd.Series:
     """
     Returns a timeseries representing the simple return over 'years'.
     If 'snap_to_closest' is True, then we will snap to the last known value
@@ -19,9 +17,7 @@ def rolling_return(
     assert isinstance(s.index, pd.DatetimeIndex), (
         f"The index of the Series must be a DatetimeIndex, got: {type(s.index)}"
     )
-    assert s.index.is_monotonic_increasing, (
-        "The index of the Series must be sorted in increasing order"
-    )
+    assert s.index.is_monotonic_increasing, "The index of the Series must be sorted in increasing order"
 
     # Forward-fill to avoid NaNs *inside* existing date ranges
     s_filled = s.ffill(limit_area="inside")
@@ -64,9 +60,7 @@ def rolling_cagr(s: pd.DataFrame | pd.Series, years=5, snap_to_closest=False):
     assert isinstance(s.index, pd.DatetimeIndex), (
         f"The index of the Series must be a DatetimeIndex, got: {type(s.index)}"
     )
-    assert s.index.is_monotonic_increasing, (
-        "The index of the Series must be sorted in increasing order"
-    )
+    assert s.index.is_monotonic_increasing, "The index of the Series must be sorted in increasing order"
 
     if (s.index[-1] - s.index[0]).days < 365:
         warn("Less than 1 year of data. Returning NaNs")
@@ -93,9 +87,7 @@ def to_usd(df, ccy_df=None, from_ccy="INR"):
     start_date = df.index[0]
     end_date = df.index[-1]
     if ccy_df is None:
-        ccy_df = yf.download(f"{from_ccy}USD=X", start=start_date, end=end_date)[
-            "Close"
-        ]
+        ccy_df = yf.download(f"{from_ccy}USD=X", start=start_date, end=end_date)["Close"]
     # TODO: Mask the Volume column if present
     return df.mul(ccy_df, axis=0)
 

@@ -5,8 +5,9 @@ import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider
 import numpy as np
 
+## Set up the data
 strike = 100.0
-spot_ladder = np.linspace(0.5 * strike, 1.5 * strike, 100)  # 50% to 150% of strike
+spot_ladder = np.linspace(0.70 * strike, 1.3 * strike, 100)  # 50% to 150% of strike
 payoff_short_put = options.payoff_short_put(spot_ladder, strike, premium=2.8)
 
 # Initialize the plot lines
@@ -14,12 +15,8 @@ fig, ax1 = plt.subplots(figsize=(10, 6))
 ax2 = ax1.twinx()  # Create a second y-axis sharing the same x-axis
 
 # Plot on respective axes
-(line1,) = ax1.plot(
-    spot_ladder, payoff_short_put, label="Payoff Short Put", color="blue"
-)
-(line2,) = ax2.plot(
-    spot_ladder, np.zeros_like(spot_ladder), label="Position Delta", color="green"
-)
+(line1,) = ax1.plot(spot_ladder, payoff_short_put, label="Payoff Short Put", color="blue")
+(line2,) = ax2.plot(spot_ladder, np.zeros_like(spot_ladder), label="Position Delta", color="green")
 
 # Set up the plot
 ax1.set_xlabel("Spot Price")
@@ -57,9 +54,7 @@ def update(val):
     dte = s_dte.val
     vol = s_vol.val
     r = s_rate.val
-    position_delta = -options.bs_delta(
-        spot_ladder, strike, dte / 365, r, vol, option_type="put"
-    )
+    position_delta = -options.bs_delta(spot_ladder, strike, dte / 365, r, vol, option_type="put")
     line2.set_ydata(position_delta)
     ax1.set_title(f"Short Put Position (DTE: {dte:.0f}, Vol: {vol:.1%}, Rate: {r:.1%})")
     fig.canvas.draw_idle()
@@ -74,6 +69,3 @@ s_rate.on_changed(update)
 update(None)
 
 plt.show()
-
-# %%
-options.bs_price(100, 100, 60, 0.05, 0.2, option_type="put")

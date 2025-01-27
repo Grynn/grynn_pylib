@@ -30,29 +30,15 @@ class TestTimeSeries(unittest.TestCase):
         d1["price"] = data
 
         for years in [1, 2, 3]:
-            result = timeseries.rolling_cagr(
-                d1["price"], years=years, snap_to_closest=True
-            )
+            result = timeseries.rolling_cagr(d1["price"], years=years, snap_to_closest=True)
             self.assertIsInstance(result, pd.Series)
             self.assertEqual(len(result), len(d1))
 
             # all dates <= years should be NaN
-            self.assertTrue(
-                result.iloc[result.index < result.index[0] + pd.DateOffset(years=years)]
-                .isna()
-                .all()
-            )
+            self.assertTrue(result.iloc[result.index < result.index[0] + pd.DateOffset(years=years)].isna().all())
             # all dates > years should be non-NaN
-            self.assertTrue(
-                result.iloc[
-                    result.index >= result.index[0] + pd.DateOffset(years=years)
-                ]
-                .notna()
-                .all()
-            )
-            valid_values = result.iloc[
-                result.index >= result.index[0] + pd.DateOffset(years=years)
-            ]
+            self.assertTrue(result.iloc[result.index >= result.index[0] + pd.DateOffset(years=years)].notna().all())
+            valid_values = result.iloc[result.index >= result.index[0] + pd.DateOffset(years=years)]
             self.assertTrue(np.allclose(valid_values, 0.29, atol=1e-2))
 
     def test_non_datetime_index_error(self):
@@ -113,11 +99,7 @@ class TestTimeSeries(unittest.TestCase):
         # assert that the result has the same number of rows as the input
         self.assertIsInstance(cagrs, pd.DataFrame)
         self.assertEqual(len(cagrs), len(df))
-        self.assertTrue(
-            cagrs.iloc[cagrs.index < cagrs.index[0] + pd.DateOffset(years=1)]
-            .isna()
-            .all(axis=None)
-        )
+        self.assertTrue(cagrs.iloc[cagrs.index < cagrs.index[0] + pd.DateOffset(years=1)].isna().all(axis=None))
         valid_cagrs = cagrs.iloc[cagrs.index >= cagrs.index[0] + pd.DateOffset(years=1)]
         self.assertTrue(valid_cagrs.notna().all(axis=None))
         valid_cagrs = valid_cagrs.round(6)

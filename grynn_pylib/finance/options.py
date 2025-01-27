@@ -16,9 +16,7 @@ import numpy as np
 def bs_d1_d2(spot, strike, time, rate, volatility):
     """Helper function to calculate d1 and d2."""
     sqrt_time = np.sqrt(time)
-    d1 = (np.log(spot / strike) + (rate + 0.5 * volatility**2) * time) / (
-        volatility * sqrt_time
-    )
+    d1 = (np.log(spot / strike) + (rate + 0.5 * volatility**2) * time) / (volatility * sqrt_time)
     d2 = d1 - volatility * sqrt_time
     return d1, d2
 
@@ -71,9 +69,7 @@ def bs_omega(spot, strike, time, rate, volatility, option_price, option_type="ca
 
 def bs_omega_short_put(spot, strike, time, rate, volatility, option_price):
     """Calculate the omega (elasticity) for a short put option."""
-    omega_put = bs_omega(
-        spot, strike, time, rate, volatility, option_price, option_type="put"
-    )
+    omega_put = bs_omega(spot, strike, time, rate, volatility, option_price, option_type="put")
     omega_short_put = -omega_put  # Omega for short put is negative of long put's omega
     return omega_short_put
 
@@ -121,9 +117,7 @@ def intrinsic_value(spot, strike, option_type: str) -> float | np.ndarray:
     elif option_type == "put":
         result = np.maximum(strike - spot, 0)
     else:
-        raise ValueError(
-            f"Invalid option type {option_type}. Must be either 'call' or 'put'."
-        )
+        raise ValueError(f"Invalid option type {option_type}. Must be either 'call' or 'put'.")
 
     return result.item() if result.size == 1 else result
 

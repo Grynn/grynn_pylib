@@ -22,29 +22,18 @@ display(df.head())
 years = [3, 5, 7]
 displaymd("## Rolling Median CAGR", raw=True)
 displaymd(f"### From {df.index[0].date()} to {df.index[-1].date()}", raw=True)
-d2 = pd.DataFrame(
-    {
-        f"{k}yrs": ts.rolling_cagr(df, years=k, snap_to_closest=True).median()
-        for k in years
-    }
-)
+d2 = pd.DataFrame({f"{k}yrs": ts.rolling_cagr(df, years=k, snap_to_closest=True).median() for k in years})
 print(tabulate(d2.round(4) * 100, headers="keys", tablefmt="pipe", floatfmt=".2f"))
 
 displaymd("## Min CAGR", raw=True)
 displaymd(f"### From {df.index[0].date()} to {df.index[-1].date()}", raw=True)
-min_cagrs = pd.DataFrame(
-    {f"{k}yrs": ts.rolling_cagr(df, years=k, snap_to_closest=True).min() for k in years}
-)
-print(
-    tabulate(min_cagrs.round(4) * 100, headers="keys", tablefmt="pipe", floatfmt=".2f")
-)
+min_cagrs = pd.DataFrame({f"{k}yrs": ts.rolling_cagr(df, years=k, snap_to_closest=True).min() for k in years})
+print(tabulate(min_cagrs.round(4) * 100, headers="keys", tablefmt="pipe", floatfmt=".2f"))
 
 with pd.ExcelWriter("rolling_median_cagr.xlsx", engine="xlsxwriter") as writer:
     # First write the DataFrames to create the worksheet
     d2.to_excel(writer, sheet_name="Rolling CAGR", startrow=2, startcol=0)
-    min_cagrs.to_excel(
-        writer, sheet_name="Rolling CAGR", startrow=2, startcol=d2.shape[1] + 3
-    )
+    min_cagrs.to_excel(writer, sheet_name="Rolling CAGR", startrow=2, startcol=d2.shape[1] + 3)
 
     # After writing, get the workbook and worksheet
     workbook = writer.book
