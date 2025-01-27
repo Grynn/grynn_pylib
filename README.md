@@ -25,7 +25,7 @@ utils.bcompare(pd.a, pd.b)
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/grynn/util/blob/main/LICENSE) file for more information.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/grynn/grynn_pylib/blob/main/LICENSE) file for more information.
 
 ## Notes
 
