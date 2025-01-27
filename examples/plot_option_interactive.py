@@ -1,13 +1,12 @@
 # An interactive plot of the payoff of a short put position, including the position delta
 #%%
-%matplotlib ipympl
+#%matplotlib ipympl
 
 # %%
 import grynn_pylib.finance.options as options
 import matplotlib.pyplot as plt
 from ipywidgets import interact
 import numpy as np
-import sys
 
 ## Set up the data
 strike = 100.0
