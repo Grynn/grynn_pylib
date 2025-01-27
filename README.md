@@ -6,11 +6,12 @@ This is a Python library project that provides finance-related functions and gen
 
 ## Installation
 
-You can install the library using pip:
+You can install the library using uv (or pip):
 
 ```shell
-pip install grynn_pylib #OR
-pip install -e <path_to_grynn_pylib>
+uv install grynn_pylib 
+#OR
+pip install grynn_pylib
 ```
 
 ## Usage
