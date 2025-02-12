@@ -6,7 +6,8 @@ import click
 
 @click.command()
 @click.argument("version", type=click.Choice(["major", "minor", "patch"]), default="patch")
-def bump_version(version):
+@click.option("--dry-run", is_flag=True, help="Perform a dry run without making any commits.")
+def bump_version(version, dry_run):
     with open("pyproject.toml", "r") as f:
         data = toml.load(f)
 
@@ -29,7 +30,13 @@ def bump_version(version):
     with open("pyproject.toml", "w") as f:
         toml.dump(data, f)
 
-    subprocess.run(["git", "add", "pyproject.toml"])
+    subprocess.run(["uv", "sync", "--all-extras"])
+    subprocess.run(["git", "add", "pyproject.toml", "uv.lock"])
+
+    if dry_run:
+        print("Dry run, else would commit & tag")
+        return
+
     subprocess.run(["git", "commit", "-m", f"Bump version to {new_version}"])
     subprocess.run(["git", "tag", "-a", f"v{new_version}", "-m", f"Bump version to {new_version}"])
 

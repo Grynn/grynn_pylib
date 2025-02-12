@@ -3,7 +3,7 @@
 .PHONY: all clean install test version
 
 dev:
-	uv sync
+	uv sync --all-extras
 
 lint:
 	uvx ruff check
