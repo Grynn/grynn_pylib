@@ -14,6 +14,9 @@ format:
 build: lint format
 	uv build
 
+publish: build
+	uv publish
+
 clean:
 	find . -type d -name "__pycache__" -exec rm -rf {} +
 	find . -type f -name "*.pyc" -delete

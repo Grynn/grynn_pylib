@@ -1,6 +1,6 @@
 # An interactive plot of the payoff of a short put position, including the position delta
-#%%
-#%matplotlib ipympl
+# %%
+# %matplotlib ipympl
 
 # %%
 import grynn_pylib.finance.options as options
@@ -38,6 +38,7 @@ ax1.axvline(x=strike, color="gray", linestyle="--", alpha=0.5)
 ax1.axhline(y=0, color="gray", linestyle="-", alpha=0.3)
 ax1.grid(True, alpha=0.3)
 
+
 # Define the update function to accept parameters directly
 @interact(dte=(1, 365, 1), vol=(0.05, 1.0, 0.05), r=(0.01, 0.10, 0.01))
 def update(dte=30, vol=0.2, r=0.05):
@@ -46,6 +47,7 @@ def update(dte=30, vol=0.2, r=0.05):
     line2.set_ydata(position_delta)
     ax1.set_title(f"Short Put Position (DTE: {dte:.0f}, Vol: {vol:.1%}, Rate: {r:.1%})")
     fig.canvas.draw_idle()
+
 
 # Initial plot
 update()
