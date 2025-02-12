@@ -1,4 +1,6 @@
 # %%
+# Print rolling median CAGR for 3,5,7 years for selected tickers
+# over last 'n_years' of data (default 10 years)
 from pathlib import Path
 from IPython.display import display, display_markdown as displaymd
 import yfinance as yf
@@ -7,11 +9,11 @@ from tabulate import tabulate
 from grynn_pylib.finance import timeseries as ts
 
 tickers = ["QQQ", "QQQE", "SPY", "XLK", "VGT", "IWM", "ROM", "QLD", "SSO", "TQQQ"]
-period = "10y"
-# since yf 0.2.51 auto_adjust defaults to True and download/history do not return "Adj Close"
+n_years = "10y"
+# since yf 0.2.51 auto_adjust defaults to True and download/history does not return "Adj Close"
 # https://github.com/copilot/c/5f0930d5-0652-426e-a1fd-6da47b081c6c
 # https://github.com/ranaroussi/yfinance/issues/2219#issuecomment-2585580123
-df = yf.download(tickers, period=period)
+df = yf.download(tickers, period=n_years)
 df = df["Close"]
 start_date = df.index[0]
 end_date = df.index[-1]

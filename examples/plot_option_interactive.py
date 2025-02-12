@@ -2,6 +2,8 @@
 # %%
 # %matplotlib ipympl
 
+# TODO: Interactive plot works fine when called from the cli, but not when executed in VSCode interactive
+
 # %%
 import grynn_pylib.finance.options as options
 import matplotlib.pyplot as plt
@@ -37,7 +39,6 @@ ax1.set_title("Short Put Position: Payoff and Delta")
 ax1.axvline(x=strike, color="gray", linestyle="--", alpha=0.5)
 ax1.axhline(y=0, color="gray", linestyle="-", alpha=0.3)
 ax1.grid(True, alpha=0.3)
-
 
 # Define the update function to accept parameters directly
 @interact(dte=(1, 365, 1), vol=(0.05, 1.0, 0.05), r=(0.01, 0.10, 0.01))
