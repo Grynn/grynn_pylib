@@ -318,7 +318,6 @@ dependencies = [
     { name = "matplotlib" },
     { name = "numpy" },
     { name = "pandas" },
-    { name = "pre-commit" },
     { name = "scipy" },
     { name = "tabulate" },
     { name = "toml" },
@@ -332,6 +331,7 @@ dev = [
     { name = "ipympl" },
     { name = "ipython" },
     { name = "ipywidgets" },
+    { name = "pre-commit" },
 ]
 test = [
     { name = "pytest" },
@@ -359,7 +359,7 @@ requires-dist = [
     { name = "matplotlib", specifier = ">=3.10.0" },
     { name = "numpy", specifier = ">=2.1.2" },
     { name = "pandas", specifier = ">=2.2" },
-    { name = "pre-commit", specifier = ">=4.1.0" },
+    { name = "pre-commit", marker = "extra == 'dev'", specifier = ">=4.1.0" },
     { name = "pytest", marker = "extra == 'test'", specifier = ">=8.3.4" },
     { name = "scipy", specifier = ">=1.14" },
     { name = "tabulate", specifier = ">=0.9.0" },

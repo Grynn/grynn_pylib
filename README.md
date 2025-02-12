@@ -9,7 +9,7 @@ This is a Python library project that provides finance-related functions and gen
 You can install the library using uv (or pip):
 
 ```shell
-uv install grynn_pylib 
+uv install grynn_pylib
 #OR
 pip install grynn_pylib
 ```

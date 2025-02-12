@@ -10,7 +10,7 @@ lint:
 
 format:
 	uvx ruff format
-	
+
 build: lint format
 	uv build
 

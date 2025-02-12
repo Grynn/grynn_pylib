@@ -48,14 +48,14 @@
         function getPlotDimensions() {
             let width = window.innerWidth - 40; // 20px margin on each side
             let height = Math.floor(width / 2.7); // initial height based on aspect ratio
-            
+
             // Ensure height doesn't exceed 40% of viewport height
             const maxHeight = Math.floor(window.innerHeight * 0.4);
             if (height > maxHeight) {
                 height = maxHeight;
                 width = Math.floor(height * 2.7);
             }
-            
+
             return { width, height };
         }
 
@@ -126,7 +126,7 @@
             fetch('data.json').then(response => response.json())
         ]).then(([returnsData, drawdownData]) => {
             allDates = drawdownData.dates;
-            
+
             const firstDate = new Date(allDates[0]).toLocaleDateString();
             const lastDate = new Date(allDates[allDates.length - 1]).toLocaleDateString();
             const yearDiff = Math.round((new Date(lastDate) - new Date(firstDate)) / (1000 * 60 * 60 * 24 * 365));
@@ -157,7 +157,7 @@
 
             const dims = getPlotDimensions();
             const baseLayout = {
-                xaxis: { 
+                xaxis: {
                     title: 'Date',
                     fixedrange: false
                 },
@@ -238,7 +238,7 @@
 
         function setDateRange(days) {
             const endDate = new Date(allDates[allDates.length - 1]);
-            
+
             if (days === 'max') {
                 updatePlots([allDates[0], allDates[allDates.length - 1]]);
                 return;
