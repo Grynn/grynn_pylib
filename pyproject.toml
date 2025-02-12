@@ -20,7 +20,7 @@ dependencies = [
     "exchange-calendars>=4.7",
     "jinja2>=3.1.5",
     "xlsxwriter>=3.2.1",
-    "tabulate>=0.9.0",
+    "tabulate>=0.9.0"
 ]
 
 [[project.authors]]
@@ -37,5 +37,5 @@ ignore = [ "E701",]
 include = [ "tests/", "grynn_pylib/", "pyproject.toml", "README.md", "LICENSE", "requirements.txt", "examples/",]
 
 [project.optional-dependencies]
-dev = ["ipykernel>=6.29.5", "ipympl>=0.9.6", "ipython>=8.31.0", "ipywidgets>=8.1.5"]
+dev = ["ipykernel>=6.29.5", "ipympl>=0.9.6", "ipython>=8.31.0", "ipywidgets>=8.1.5", "pre-commit>=4.1.0",]
 test = ["pytest>=8.3.4"]

@@ -14,9 +14,9 @@ def rolling_return(s: pd.Series, years: int = 5, snap_to_closest: bool = False) 
     pct_change, which may yield NaNs if exact dates don't line up.
     """
     # Basic sanity checks
-    assert isinstance(s.index, pd.DatetimeIndex), (
-        f"The index of the Series must be a DatetimeIndex, got: {type(s.index)}"
-    )
+    assert isinstance(
+        s.index, pd.DatetimeIndex
+    ), f"The index of the Series must be a DatetimeIndex, got: {type(s.index)}"
     assert s.index.is_monotonic_increasing, "The index of the Series must be sorted in increasing order"
 
     # Forward-fill to avoid NaNs *inside* existing date ranges
@@ -57,9 +57,9 @@ def rolling_return(s: pd.Series, years: int = 5, snap_to_closest: bool = False) 
 
 def rolling_cagr(s: pd.DataFrame | pd.Series, years=5, snap_to_closest=False):
     # Basic sanity checks
-    assert isinstance(s.index, pd.DatetimeIndex), (
-        f"The index of the Series must be a DatetimeIndex, got: {type(s.index)}"
-    )
+    assert isinstance(
+        s.index, pd.DatetimeIndex
+    ), f"The index of the Series must be a DatetimeIndex, got: {type(s.index)}"
     assert s.index.is_monotonic_increasing, "The index of the Series must be sorted in increasing order"
 
     if (s.index[-1] - s.index[0]).days < 365:
