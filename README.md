@@ -1,5 +1,6 @@
 # grynn_pylib
 
+[![PyPI version](https://img.shields.io/pypi/v/grynn_pylib.svg)](https://pypi.org/project/grynn_pylib/)
 [![Python Tests](https://github.com/Grynn/grynn_pylib/actions/workflows/pytest.yml/badge.svg?branch=main)](https://github.com/Grynn/grynn_pylib/actions/workflows/pytest.yml)
 
 This is a Python library project that provides finance-related functions and general utility functions.
