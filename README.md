@@ -24,6 +24,22 @@ pd.DataFrame({'a': [1, 2], 'b': [3, 4]})
 utils.bcompare(pd.a, pd.b)
 ```
 
+## Development & Publishing
+
+### Publishing to PyPI
+
+This package is automatically published to PyPI when a new version tag is pushed to the repository:
+
+1. Update the version in `pyproject.toml`
+2. Create and push a version tag:
+   ```bash
+   git tag v0.3.4  # Use the new version number
+   git push origin v0.3.4
+   ```
+3. The GitHub Actions workflow will automatically build and publish the package to PyPI
+
+**Note**: The repository must have a `PYPI_API_TOKEN` secret configured in GitHub Settings > Secrets and variables > Actions for automated publishing to work.
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](https://github.com/grynn/grynn_pylib/blob/main/LICENSE) file for more information.
