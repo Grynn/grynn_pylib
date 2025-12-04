@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "grynn_pylib"
 description = "A Python library of general utility functions, by & for Grynn."
-version = "0.3.3"
+version = "0.3.4"
 requires-python = ">=3.12"
 license = "MIT"
 dependencies = [
