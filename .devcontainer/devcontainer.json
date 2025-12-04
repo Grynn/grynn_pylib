@@ -7,7 +7,7 @@
     "mounts": [
         "source=${localWorkspaceFolderBasename}-venv,target=${containerWorkspaceFolder}/.venv,type=volume"
     ],
-    "postCreateCommand": "uv sync --all-extras",
+    "postCreateCommand": "sudo chown -R vscode:vscode .venv && make dev",
     "customizations": {
         "vscode": {
             "extensions": [

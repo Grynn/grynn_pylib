@@ -4,6 +4,7 @@
 
 dev:
 	uv sync --all-extras
+	uv run pre-commit install
 
 lint:
 	uvx ruff check
@@ -34,4 +35,7 @@ test: dev
 version: test
 	# bumpversion patch, but only if working directory is clean
 	git diff-index --quiet HEAD -- || (echo "Working directory not clean, aborting" && exit 1)
-	uv run bump_version.py patch
+	uv version --bump patch
+	git add pyproject.toml uv.lock
+	git commit -m "Bump version to $$(uv version --short)"
+	git tag -a "v$$(uv version --short)" -m "Version $$(uv version --short)"

@@ -28,7 +28,14 @@ name = "Vishal Doshi"
 email = "vishal.doshi@gmail.com"
 
 [dependency-groups]
-dev = [ "ipykernel>=6.29.5", "ipympl>=0.9.6", "ipython>=8.31.0", "ipywidgets>=8.1.5", "pytest>=8.3.4",]
+dev = [
+ "ipykernel>=6.29.5",
+ "ipympl>=0.9.6",
+ "ipython>=8.31.0",
+ "ipywidgets>=8.1.5",
+ "pre-commit>=4.3.0",
+ "pytest>=8.3.4",
+]
 
 [project.optional-dependencies]
 dev = [ "ipykernel>=6.29.5", "ipympl>=0.9.6", "ipython>=8.31.0", "ipywidgets>=8.1.5", "pre-commit>=4.1.0",]
